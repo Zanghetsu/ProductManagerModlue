@@ -2,6 +2,7 @@ package com.productmanager.data;
 
 import java.math.BigDecimal;
 
+import static com.productmanager.data.Rating.*;
 import static java.math.RoundingMode.HALF_UP;
 
 /**
@@ -19,6 +20,17 @@ public class Product {
     private BigDecimal price;
     private final BigDecimal DISCOUNT_RATE = BigDecimal.valueOf(0.1);
     private Rating rating;
+
+    public Product(int id, String name, BigDecimal price, Rating rating) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.rating = rating;
+    }
+
+    public Product(int id, String name, BigDecimal price) {
+        this(id, name, price, NOT_RATED);
+    }
 
 
     public int getId() {
@@ -43,6 +55,10 @@ public class Product {
 
     public void setPrice(final BigDecimal price) {
         this.price = price;
+    }
+
+    public Rating getRating() {
+        return rating;
     }
 
 
