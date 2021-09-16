@@ -50,6 +50,7 @@ public abstract class Product implements Rateable {
         return price;
     }
 
+    @Override
     public Rating getRating() {
         return rating;
     }
