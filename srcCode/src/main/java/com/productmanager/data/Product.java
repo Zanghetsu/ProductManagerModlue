@@ -62,6 +62,7 @@ public class Product {
         return rating;
     }
 
+    public String getRatingDisplay() { return rating.getStars();}
 
     public BigDecimal getDiscount() {
         return price.multiply(DISCOUNT_RATE).setScale(2, HALF_UP);
