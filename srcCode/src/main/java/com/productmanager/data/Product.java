@@ -17,8 +17,9 @@ public class Product {
     private int id;
     private String name;
     private BigDecimal price;
-
     private final BigDecimal DISCOUNT_RATE = BigDecimal.valueOf(0.1);
+    private Rating rating;
+
 
     public int getId() {
         return id;

@@ -4,7 +4,7 @@ package com.productmanager.data;
  * This is a simple representation of a ratings system,
  * using unicode characters (u2605 and u2606) to display ratings early on the project build process
  */
-public enum Ratings {
+public enum Rating {
     NOT_RATED("\u2606\u2606\u2606\u2606\u2606"),
     ONE_STAR("\u2605\u2606\u2606\u2606\u2606"),
     TWO_STAR("\u2605\u2605\u2606\u2606\u2606"),
@@ -15,7 +15,7 @@ public enum Ratings {
 
     private final String stars;
 
-    Ratings(String stars) {
+    Rating(String stars) {
         this.stars = stars;
     }
 
