@@ -33,6 +33,10 @@ public class Product {
         this(id, name, price, NOT_RATED);
     }
 
+    public Product(){
+        this(0,"no name",BigDecimal.ZERO, NOT_RATED);
+    }
+
 
     public int getId() {
         return id;
