@@ -63,4 +63,9 @@ public class Product {
     public Product applyNewRating(Rating newRating){
         return new Product(id, name, price, newRating);
     }
+
+    @Override
+    public String toString() {
+        return id+" "+name+" "+price+getDiscount()+" "+getRatingDisplay();
+    }
 }
