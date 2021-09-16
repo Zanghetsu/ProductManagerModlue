@@ -15,7 +15,7 @@ import static java.math.RoundingMode.HALF_UP;
  */
 
 
-public abstract class Product {
+public abstract class Product implements Rateable {
 
     private int id;
     private String name;
@@ -61,8 +61,6 @@ public abstract class Product {
     public BigDecimal getDiscount() {
         return price.multiply(DISCOUNT_RATE).setScale(2, HALF_UP);
     }
-
-    public abstract Product applyNewRating(Rating newRating);
 
     @Override
     public String toString() {
