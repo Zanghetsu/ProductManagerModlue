@@ -14,7 +14,7 @@ import static java.math.RoundingMode.HALF_UP;
  */
 
 
-public class Product {
+public abstract class Product {
 
     private int id;
     private String name;
@@ -61,9 +61,7 @@ public class Product {
         return price.multiply(DISCOUNT_RATE).setScale(2, HALF_UP);
     }
 
-    public Product applyNewRating(Rating newRating){
-        return new Product(id, name, price, newRating);
-    }
+    public abstract Product applyNewRating(Rating newRating);
 
     @Override
     public String toString() {

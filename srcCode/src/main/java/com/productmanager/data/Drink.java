@@ -14,12 +14,16 @@ public class Drink extends Product {
     }
 
     @Override
+    public Product applyNewRating(Rating newRating) {
+        return new Drink(getId(), getName(), getPrice());
+    }
+
+    @Override
     public BigDecimal getDiscount() {
         LocalTime now = LocalTime.now();
         return (now.isAfter(LocalTime.of(17, 30)) && now.isBefore(LocalTime.of(18, 30)))
                 ? super.getDiscount() : BigDecimal.ZERO;
     }
-
 
     //TODO : REFACTOR CODE -> REMOVE MAGIC NUMBERS, ADD unpacking to method param, fill in numbers,
     // extract whole method into an interface (like below)

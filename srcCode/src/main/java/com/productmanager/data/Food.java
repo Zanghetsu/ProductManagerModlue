@@ -23,6 +23,11 @@ public class Food extends Product{
     }
 
     @Override
+    public Product applyNewRating(Rating newRating) {
+        return new Food(getId(), getName(), getPrice(), newRating, bestBefore);
+    }
+
+    @Override
     public String toString() {
         return super.toString()+" "+ getBestBefore();
     }
