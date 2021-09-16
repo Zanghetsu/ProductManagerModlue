@@ -1,6 +1,7 @@
 package com.productmanager.data;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import static com.productmanager.data.Rating.*;
@@ -22,6 +23,10 @@ public abstract class Product {
     private final BigDecimal DISCOUNT_RATE = BigDecimal.valueOf(0.1);
     private Rating rating;
 
+    public LocalDate getBestBefore() {
+        return LocalDate.now();
+    }
+
     public Product(int id, String name, BigDecimal price, Rating rating) {
         this.id = id;
         this.name = name;
@@ -31,10 +36,6 @@ public abstract class Product {
 
     public Product(int id, String name, BigDecimal price) {
         this(id, name, price, NOT_RATED);
-    }
-
-    public Product() {
-        this(0, "no name", BigDecimal.ZERO, NOT_RATED);
     }
 
     public int getId() {
@@ -65,7 +66,7 @@ public abstract class Product {
 
     @Override
     public String toString() {
-        return id+" "+name+" "+price+" " +getDiscount()+" "+getRatingDisplay();
+        return id+" "+name+" "+price+" " +getDiscount()+" "+getRatingDisplay()+" "+getBestBefore() ;
     }
 
     @Override
