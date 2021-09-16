@@ -8,6 +8,6 @@ public class Drink extends Product{
         super(id, name, price, rating);
     }
 
-    public Drink(int id, String coca_cola, BigDecimal price) {
+    public Drink(int id, String name, BigDecimal price) {
     }
 }

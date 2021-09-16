@@ -1,6 +1,7 @@
 package com.productmanager.data;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 import static com.productmanager.data.Rating.*;
 import static java.math.RoundingMode.HALF_UP;
@@ -67,5 +68,19 @@ public class Product {
     @Override
     public String toString() {
         return id+" "+name+" "+price+getDiscount()+" "+getRatingDisplay();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+        if( o.getClass() != this.getClass()) return false;
+        Product product = (Product) o;
+        return getId() == product.getId() && Objects.equals(getName(), product.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

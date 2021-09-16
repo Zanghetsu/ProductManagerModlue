@@ -18,6 +18,8 @@ public class ProductManagerApp {
         Product p2 = new Food(102, "Hamburger", BigDecimal.valueOf(20.78), Rating.THREE_STAR, LocalDate.now().plusDays(2));
         Product p3 = new Food(102, "Pizza",BigDecimal.valueOf(18.97), Rating.FIVE_STAR, LocalDate.now().plusDays(3));
         Product p4 = p3.applyNewRating(Rating.FOUR_STAR);
+        Product p5 = new Drink(105, "Cocoa", BigDecimal.valueOf(4.37));
+        Product p6 = new Food(105, "Cocoa", BigDecimal.valueOf(4.37), Rating.NOT_RATED, LocalDate.now().plusDays(3));
 
         System.out.println(p1);
         System.out.println(p2);
