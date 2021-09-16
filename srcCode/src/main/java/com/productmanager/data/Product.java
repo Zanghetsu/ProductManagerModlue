@@ -59,4 +59,8 @@ public class Product {
     public BigDecimal getDiscount() {
         return price.multiply(DISCOUNT_RATE).setScale(2, HALF_UP);
     }
+
+    public Product applyNewRating(Rating newRating){
+        return new Product(id, name, price, newRating);
+    }
 }
