@@ -1,6 +1,7 @@
 package com.productmanager.data;
 
 import java.math.BigDecimal;
+
 import static java.math.RoundingMode.HALF_UP;
 
 /**
@@ -44,7 +45,7 @@ public class Product {
     }
 
 
-    public BigDecimal getDiscount(){
-        return price.multiply(DISCOUNT_RATE).setScale(2,HALF_UP);
+    public BigDecimal getDiscount() {
+        return price.multiply(DISCOUNT_RATE).setScale(2, HALF_UP);
     }
 }
