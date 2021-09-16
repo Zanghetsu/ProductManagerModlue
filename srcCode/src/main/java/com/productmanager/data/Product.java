@@ -1,8 +1,15 @@
 package com.productmanager.data;
 
 import java.math.BigDecimal;
-
 import static java.math.RoundingMode.HALF_UP;
+
+/**
+ * {@code Product} class represents the properties and behaviours of
+ * a product object in a Product Management System.
+ * <br>
+ * Discount is applicable to each product.
+ */
+
 
 public class Product {
 
