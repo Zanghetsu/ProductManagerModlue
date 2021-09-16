@@ -67,7 +67,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return id+" "+name+" "+price+getDiscount()+" "+getRatingDisplay();
+        return id+" "+name+" "+price+" " +getDiscount()+" "+getRatingDisplay();
     }
 
     @Override
