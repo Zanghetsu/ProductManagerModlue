@@ -15,7 +15,7 @@ import static java.math.RoundingMode.HALF_UP;
  */
 
 
-public abstract class Product implements Rateable {
+public abstract class Product implements Rateable<Product> {
 
     private int id;
     private String name;
@@ -50,6 +50,7 @@ public abstract class Product implements Rateable {
         return price;
     }
 
+    @Override
     public Rating getRating() {
         return rating;
     }
@@ -62,7 +63,6 @@ public abstract class Product implements Rateable {
         return price.multiply(DISCOUNT_RATE).setScale(2, HALF_UP);
     }
 
-    public abstract Product applyNewRating(Rating newRating);
 
     @Override
     public String toString() {
