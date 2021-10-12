@@ -4,6 +4,7 @@ import com.productmanager.data.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -39,10 +40,12 @@ public class ProductManagerApp {
         System.out.println(p5);
         System.out.println(p6);
         */
-        //productManager.printProductReport(p1);
+        //productManager.printProductReport(101);
         //productManager.printProductReport(p2);
 
-        productManager.printProductsReportSorted((p1,p2) -> p2.getRating().ordinal() - p1.getRating().ordinal());
-
+        productManager.printProductsReportSorted(p -> p.getPrice().floatValue() < 2 ,(p1,p2) -> p2.getRating().ordinal() - p1.getRating().ordinal());
+        Comparator<Product> ratingSorter = (p1,p2) -> p1.getRating().ordinal() - p2.getRating().ordinal();
+        Comparator<Product> priceSorter = (p1,p2) -> p1.getPrice().compareTo(p2.getPrice());
+        //productManager.printProductsReportSorted(ratingSorter.thenComparing(priceSorter));
     }
 }

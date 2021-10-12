@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 //TODO : Later refactor the whole to ProductDAO!!
 
@@ -22,9 +24,10 @@ public class ProductManager {
                     "jp-JAP", new Formatter(Locale.JAPAN)
             );
 
-    public ProductManager(Locale locale){
+    public ProductManager(Locale locale) {
         this(locale.getDisplayLanguage());
     }
+
     public ProductManager(String languageTag) {
         setLocale(languageTag);
     }
@@ -50,18 +53,11 @@ public class ProductManager {
         return product;
     }
 
-    public Product findProductById(int id){
-        Product result = null;
-        for (Product product : products.keySet()){
-            if(product.getId() == id){
-                result = product;
-                break;
-            }
-        }
-        return result;
+    public Product findProductById(int id) {
+        return products.keySet().stream().filter(p -> p.getId() == id).findFirst().orElseGet(null);
     }
 
-    public Product reviewProduct(int id, Rating rating, String comments){
+    public Product reviewProduct(int id, Rating rating, String comments) {
         return reviewProduct(findProductById(id), rating, comments);
     }
 
@@ -69,47 +65,41 @@ public class ProductManager {
         List<Review> reviews = products.get(productUnderReview);
         products.remove(productUnderReview, reviews);
         reviews.add(new Review(rating, comments));
-        int sum = 0;
 
-        for (Review review : reviews) {
-            sum += review.getRating().ordinal();
-        }
+        productUnderReview = productUnderReview.applyNewRating(Rateable
+                .convert(
+                        (int) Math.round(reviews.stream().mapToInt(r -> r.getRating()
+                                .ordinal())
+                                .average()
+                                .orElse(0))));
 
-        productUnderReview = productUnderReview.applyNewRating(Rateable.convert(Math.round((float) sum / reviews.size())));
         products.put(productUnderReview, reviews);
         return productUnderReview;
 
     }
 
-    public void printProduct(int id){
+    public void printProduct(int id) {
         printProductReport(findProductById(id));
     }
 
     public void printProductReport(Product product) {
         StringBuilder txt = new StringBuilder();
         List<Review> reviews = products.get(product);
-
         txt.append(formatter.productFormatter(product));
         txt.append("\n");
-        for (Review review : reviews) {
-            txt.append(formatter.reviewFormatter(review));
-            txt.append("\n");
-        }
-        if (reviews.isEmpty()) {
+
+        if(reviews.isEmpty()){
             txt.append(formatter.getTextFromBundle("no.review"));
-            txt.append("\n");
+        }else{
+            txt.append(reviews.stream().map(r -> formatter.reviewFormatter(r) + "\n").collect(Collectors.joining()));
         }
         System.out.println(txt);
     }
 
-    public void printProductsReportSorted( Comparator <Product> sorter){
-        List<Product> productsList = new ArrayList<>(products.keySet());
-        productsList.sort(sorter);
+    public void printProductsReportSorted(Predicate<Product> filter , Comparator<Product> sorter) {
         StringBuilder sb = new StringBuilder();
-        for(Product product:productsList){
-            sb.append(formatter.productFormatter(product));
-            sb.append("\n");
-        }
+        products.keySet().stream().sorted(sorter).filter(filter).forEach(p -> sb.append(formatter.productFormatter(p)).append("\n"));
+
         System.out.println(sb);
     }
 
