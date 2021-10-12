@@ -50,7 +50,6 @@ public abstract class Product implements Rateable {
         return price;
     }
 
-    @Override
     public Rating getRating() {
         return rating;
     }
@@ -62,6 +61,8 @@ public abstract class Product implements Rateable {
     public BigDecimal getDiscount() {
         return price.multiply(DISCOUNT_RATE).setScale(2, HALF_UP);
     }
+
+    public abstract Product applyNewRating(Rating newRating);
 
     @Override
     public String toString() {
