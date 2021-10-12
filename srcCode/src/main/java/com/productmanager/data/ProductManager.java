@@ -96,6 +96,14 @@ public class ProductManager {
         System.out.println(txt);
     }
 
+    public void printProductsReportSorted( Comparator<Product> sorter) {
+        StringBuilder sb = new StringBuilder();
+        products.keySet().stream().sorted(sorter).forEach(p -> sb.append(formatter.productFormatter(p)).append("\n"));
+
+        System.out.println(sb);
+    }
+
+
     public void printProductsReportSorted(Predicate<Product> filter , Comparator<Product> sorter) {
         StringBuilder sb = new StringBuilder();
         products.keySet().stream().sorted(sorter).filter(filter).forEach(p -> sb.append(formatter.productFormatter(p)).append("\n"));
