@@ -88,23 +88,22 @@ public class ProductManager {
         txt.append(formatter.productFormatter(product));
         txt.append("\n");
 
-        if(reviews.isEmpty()){
+        if (reviews.isEmpty()) {
             txt.append(formatter.getTextFromBundle("no.review"));
-        }else{
+        } else {
             txt.append(reviews.stream().map(r -> formatter.reviewFormatter(r) + "\n").collect(Collectors.joining()));
         }
         System.out.println(txt);
     }
 
-    public void printProductsReportSorted( Comparator<Product> sorter) {
+    public void printProductsReportSorted(Comparator<Product> sorter) {
         StringBuilder sb = new StringBuilder();
         products.keySet().stream().sorted(sorter).forEach(p -> sb.append(formatter.productFormatter(p)).append("\n"));
 
         System.out.println(sb);
     }
 
-
-    public void printProductsReportSorted(Predicate<Product> filter , Comparator<Product> sorter) {
+    public void printProductsReportSorted(Predicate<Product> filter, Comparator<Product> sorter) {
         StringBuilder sb = new StringBuilder();
         products.keySet().stream().sorted(sorter).filter(filter).forEach(p -> sb.append(formatter.productFormatter(p)).append("\n"));
 
@@ -145,4 +144,12 @@ public class ProductManager {
 
     }
 
+    public Map<String, String> getDiscounts() {
+        return products.keySet().stream().collect(Collectors.groupingBy(product -> product.getRating().getStars(),
+                Collectors.collectingAndThen(
+                        (Collectors.summingDouble(
+                                product -> product.getDiscount()
+                                        .doubleValue())),
+                        discount -> formatter.currencyFormatter.format(discount))));
+    }
 }
