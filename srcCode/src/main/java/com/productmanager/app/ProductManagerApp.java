@@ -13,18 +13,18 @@ import java.util.ResourceBundle;
 
 public class ProductManagerApp {
     public static void main(String[] args) {
-        ProductManager productManager = new ProductManager(Locale.UK);
+        ProductManager productManager = new ProductManager("en-US");
 
-        Product p1 = productManager.createProduct(101, "Coca Cola", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
-        productManager.printProductReport(p1);
-        p1 = productManager.reviewProduct(p1, Rating.THREE_STAR, "Not the best that I have drank...");
-        p1 = productManager.reviewProduct(p1, Rating.TWO_STAR, "Not too good...");
-        p1 = productManager.reviewProduct(p1, Rating.ONE_STAR, "The best...");
+        productManager.createProduct(101, "Coca Cola", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
+        //productManager.printProductReport(p1);
+        productManager.reviewProduct(101, Rating.THREE_STAR, "Not the best that I have drank...");
+        productManager.reviewProduct(101, Rating.TWO_STAR, "Not too good...");
+        productManager.reviewProduct(101, Rating.ONE_STAR, "The best...");
 
-        Product p2 = productManager.createProduct(102, "Hamburger", BigDecimal.valueOf(20.78), Rating.THREE_STAR, LocalDate.now().plusDays(2));
-        p2 = productManager.reviewProduct(p2, Rating.THREE_STAR, "Not the best that I have drank...");
-        p2 = productManager.reviewProduct(p2, Rating.TWO_STAR, "Not too good...");
-        p2 = productManager.reviewProduct(p2, Rating.ONE_STAR, "The best...");
+        productManager.createProduct(102, "Hamburger", BigDecimal.valueOf(20.78), Rating.THREE_STAR, LocalDate.now().plusDays(2));
+        productManager.reviewProduct(102, Rating.THREE_STAR, "Not the best that I have drank...");
+        productManager.reviewProduct(102, Rating.TWO_STAR, "Not too good...");
+        productManager.reviewProduct(102, Rating.FIVE_STAR, "The best...");
 
 
         /*Product p3 = productManager.createProduct(102, "Pizza", BigDecimal.valueOf(18.97), Rating.FIVE_STAR, LocalDate.now().plusDays(3));
@@ -39,8 +39,10 @@ public class ProductManagerApp {
         System.out.println(p5);
         System.out.println(p6);
         */
-        productManager.printProductReport(p1);
-        productManager.printProductReport(p2)
-        ;
+        //productManager.printProductReport(p1);
+        //productManager.printProductReport(p2);
+
+        productManager.printProductsReportSorted((p1,p2) -> p2.getRating().ordinal() - p1.getRating().ordinal());
+
     }
 }

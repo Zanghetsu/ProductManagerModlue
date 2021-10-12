@@ -50,6 +50,21 @@ public class ProductManager {
         return product;
     }
 
+    public Product findProductById(int id){
+        Product result = null;
+        for (Product product : products.keySet()){
+            if(product.getId() == id){
+                result = product;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public Product reviewProduct(int id, Rating rating, String comments){
+        return reviewProduct(findProductById(id), rating, comments);
+    }
+
     public Product reviewProduct(Product productUnderReview, Rating rating, String comments) {
         List<Review> reviews = products.get(productUnderReview);
         products.remove(productUnderReview, reviews);
@@ -64,6 +79,10 @@ public class ProductManager {
         products.put(productUnderReview, reviews);
         return productUnderReview;
 
+    }
+
+    public void printProduct(int id){
+        printProductReport(findProductById(id));
     }
 
     public void printProductReport(Product product) {
@@ -83,6 +102,16 @@ public class ProductManager {
         System.out.println(txt);
     }
 
+    public void printProductsReportSorted( Comparator <Product> sorter){
+        List<Product> productsList = new ArrayList<>(products.keySet());
+        productsList.sort(sorter);
+        StringBuilder sb = new StringBuilder();
+        for(Product product:productsList){
+            sb.append(formatter.productFormatter(product));
+            sb.append("\n");
+        }
+        System.out.println(sb);
+    }
 
     private static class Formatter {
         private Locale locale;
