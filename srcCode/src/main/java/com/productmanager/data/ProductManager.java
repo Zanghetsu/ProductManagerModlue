@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 //TODO : Later refactor the whole to ProductDAO!!
@@ -53,12 +55,17 @@ public class ProductManager {
         return product;
     }
 
-    public Product findProductById(int id) {
-        return products.keySet().stream().filter(p -> p.getId() == id).findFirst().orElseGet(null);
+    public Product findProductById(int id) throws ProdManException {
+        return products.keySet().stream().filter(p -> p.getId() == id).findFirst().orElseThrow(() -> new ProdManException("product with "+id+" not found!!"));
     }
 
     public Product reviewProduct(int id, Rating rating, String comments) {
-        return reviewProduct(findProductById(id), rating, comments);
+        try{
+            return reviewProduct(findProductById(id), rating, comments);
+        } catch (ProdManException exc){
+            Logger.getLogger(ProductManager.class.getName()).log(Level.SEVERE,null,exc);
+        }
+        return null;
     }
 
     public Product reviewProduct(Product productUnderReview, Rating rating, String comments) {
@@ -79,7 +86,11 @@ public class ProductManager {
     }
 
     public void printProduct(int id) {
-        printProductReport(findProductById(id));
+        try {
+            printProductReport(findProductById(id));
+        } catch (ProdManException e) {
+            Logger.getLogger(ProductManager.class.getName()).log(Level.SEVERE,null,e);
+        }
     }
 
     public void printProductReport(Product product) {

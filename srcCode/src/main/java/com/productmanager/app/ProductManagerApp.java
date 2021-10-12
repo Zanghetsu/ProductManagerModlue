@@ -17,7 +17,7 @@ public class ProductManagerApp {
         ProductManager productManager = new ProductManager("en-US");
 
         productManager.createProduct(101, "Coca Cola", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
-        //productManager.printProductReport(p1);
+        productManager.printProduct(42);
         productManager.reviewProduct(101, Rating.THREE_STAR, "Not the best that I have drank...");
         productManager.reviewProduct(101, Rating.TWO_STAR, "Not too good...");
         productManager.reviewProduct(101, Rating.ONE_STAR, "The best...");
