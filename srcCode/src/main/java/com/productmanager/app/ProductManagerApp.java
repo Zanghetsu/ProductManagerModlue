@@ -16,7 +16,7 @@ public class ProductManagerApp {
         ProductManager productManager = new ProductManager(Locale.UK);
 
         Product p1 = productManager.createProduct(101, "Coca Cola", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
-        productManager.printProductReport();
+        productManager.printProductReport(p1);
         p1 = productManager.reviewProduct(p1, Rating.THREE_STAR,"Not the best that I have drank...");
         p1 = productManager.reviewProduct(p1, Rating.TWO_STAR,"Not too good...");
         p1 = productManager.reviewProduct(p1, Rating.ONE_STAR,"The best...");
@@ -34,6 +34,6 @@ public class ProductManagerApp {
         System.out.println(p5);
         System.out.println(p6);
         */
-         productManager.printProductReport();
+         productManager.printProductReport(p1);
     }
 }
