@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public class ProductManager {
 
     private Map<Product, List<Review>> products = new HashMap<>();
+    private static final Logger LOGGER = Logger.getLogger(ProductManager.class.getName());
     private Formatter formatter;
     private static Map<String, Formatter> resourceFormatters =
             Map.of("en-GB", new Formatter(Locale.UK),
@@ -63,7 +64,7 @@ public class ProductManager {
         try{
             return reviewProduct(findProductById(id), rating, comments);
         } catch (ProdManException exc){
-            Logger.getLogger(ProductManager.class.getName()).log(Level.SEVERE,null,exc);
+            LOGGER.log(Level.SEVERE,null,exc);
         }
         return null;
     }
@@ -89,7 +90,7 @@ public class ProductManager {
         try {
             printProductReport(findProductById(id));
         } catch (ProdManException e) {
-            Logger.getLogger(ProductManager.class.getName()).log(Level.SEVERE,null,e);
+            LOGGER.log(Level.SEVERE,null,e);
         }
     }
 
