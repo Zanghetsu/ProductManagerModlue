@@ -98,14 +98,14 @@ public class ProductManager {
                     (String) values[2]);
         }
         catch (ParseException e){
-            LOGGER.log(Level.WARNING, "Error pasing review " + text, e);
+            LOGGER.log(Level.WARNING, "Error parsing review " + text, e);
         };
     }
 
     public void printProduct(int id) {
         try {
             printProductReport(findProductById(id));
-        } catch (ProdManException e) {
+        } catch (ProdManException | NumberFormatException e) {
             LOGGER.log(Level.INFO,e.getMessage());
         }
     }

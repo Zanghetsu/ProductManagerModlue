@@ -28,6 +28,9 @@ public class ProductManagerApp {
         productManager.reviewProduct(102, Rating.FIVE_STAR, "The best...");
 
 
+        productManager.parseReview("101,4,Nice bevrage");
+        productManager.printProduct(101);
+
         /*Product p3 = productManager.createProduct(102, "Pizza", BigDecimal.valueOf(18.97), Rating.FIVE_STAR, LocalDate.now().plusDays(3));
         Product p4 = p3.applyNewRating(Rating.FOUR_STAR);
         Product p5 = productManager.createProduct(105, "Cocoa", BigDecimal.valueOf(4.37),Rating.NOT_RATED);
@@ -48,6 +51,5 @@ public class ProductManagerApp {
         Comparator<Product> priceSorter = (p1,p2) -> p1.getPrice().compareTo(p2.getPrice());
         //productManager.printProductsReportSorted(ratingSorter.thenComparing(priceSorter));
         productManager.getDiscounts().forEach((rating,discount) -> System.out.println(rating +"\t"+discount));
-        productManager.printProduct(42);
     }
 }
