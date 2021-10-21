@@ -48,5 +48,6 @@ public class ProductManagerApp {
         Comparator<Product> priceSorter = (p1,p2) -> p1.getPrice().compareTo(p2.getPrice());
         //productManager.printProductsReportSorted(ratingSorter.thenComparing(priceSorter));
         productManager.getDiscounts().forEach((rating,discount) -> System.out.println(rating +"\t"+discount));
+        productManager.printProduct(42);
     }
 }

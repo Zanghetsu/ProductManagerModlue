@@ -3,6 +3,7 @@ package com.productmanager.data;
 import java.math.BigDecimal;
 import java.text.MessageFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -17,6 +18,9 @@ import java.util.stream.Collectors;
 public class ProductManager {
 
     private Map<Product, List<Review>> products = new HashMap<>();
+    private ResourceBundle config = ResourceBundle.getBundle("config");
+    private MessageFormat reviewFormat = new MessageFormat(config.getString("review.data.format"));
+    private MessageFormat productFormat = new MessageFormat(config.getString("product.data.format"));
     private static final Logger LOGGER = Logger.getLogger(ProductManager.class.getName());
     private Formatter formatter;
     private static Map<String, Formatter> resourceFormatters =
@@ -57,7 +61,7 @@ public class ProductManager {
     }
 
     public Product findProductById(int id) throws ProdManException {
-        return products.keySet().stream().filter(p -> p.getId() == id).findFirst().orElseThrow(() -> new ProdManException("product with "+id+" not found!!"));
+        return products.keySet().stream().filter(p -> p.getId() == id).findFirst().orElseThrow(() -> new ProdManException("product with id: "+id+" not found!!"));
     }
 
     public Product reviewProduct(int id, Rating rating, String comments) {
@@ -84,6 +88,18 @@ public class ProductManager {
         products.put(productUnderReview, reviews);
         return productUnderReview;
 
+    }
+
+    public void parseReview(String text){
+        try {
+            Object[] values = reviewFormat.parse(text);
+            reviewProduct(Integer.parseInt((String) values[0]),
+                    Rateable.convert(Integer.parseInt((String) values[1])),
+                    (String) values[2]);
+        }
+        catch (ParseException e){
+            LOGGER.log(Level.WARNING, "Error pasing review " + text, e);
+        };
     }
 
     public void printProduct(int id) {
