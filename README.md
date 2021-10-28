@@ -2,9 +2,9 @@
 
 ## Introduction
 
-This is a solo project, with the aim to create a stand alone product manager application, that can later be integrated into newly developed managment applications, that utilize some kind of product/storage management.
+This is a solo project, with the aim to create a standalone product manager application, that can later be integrated into newly developed management applications, that utilize some kind of product/storage management.
 
-The first iteration of the application utilizes only Java (within the boundaries of a maven project), and further down the line in the next iterations, it will be refactored into a stand alone spring boot application, with n-tier architecutral layout (as this enfolds, this section will be updated).
+The first iteration of the application utilizes only Java (within the boundaries of a maven project), and further down the line in the next iterations, it will be refactored into a standalone spring boot application, with n-tier architectural layout (as this enfolds, this section will be updated).
 
 As describe above, the project development follows agile methodology.
 
@@ -18,5 +18,5 @@ As describe above, the project development follows agile methodology.
 * CRUD operations regarding products
 * Rating and reviewing products
 * Printing product reports to .csv files, and retrieving them
-* Executing the operations trough a terminal GUI
+* Executing the operations through a terminal GUI
 
