@@ -1,4 +1,6 @@
-package com.productmanager.data;
+package com.productmanager.entity.product;
+
+import com.productmanager.entity.review.Rating;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -9,11 +11,11 @@ import java.time.LocalDate;
  * such as best before.
  */
 
-public class Food extends Product{
+public class Food extends Product {
 
     private LocalDate bestBefore;
 
-    Food(int id, String name, BigDecimal price, Rating rating, LocalDate bestBefore) {
+    public Food(int id, String name, BigDecimal price, Rating rating, LocalDate bestBefore) {
         super(id, name, price, rating);
         this.bestBefore = bestBefore;
     }
@@ -24,7 +26,7 @@ public class Food extends Product{
 
     @Override
     public Product applyNewRating(Rating newRating) {
-        return new Food(getId(), getName(), getPrice(), newRating, bestBefore);
+        return new Food(getId(), getProduct_name(), getPrice(), newRating, bestBefore);
     }
 
     @Override

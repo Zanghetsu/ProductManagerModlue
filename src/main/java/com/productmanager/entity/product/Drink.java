@@ -1,11 +1,13 @@
-package com.productmanager.data;
+package com.productmanager.entity.product;
+
+import com.productmanager.entity.review.Rating;
 
 import java.math.BigDecimal;
 import java.time.LocalTime;
 
 public class Drink extends Product {
 
-    Drink(int id, String name, BigDecimal price, Rating rating) {
+    public Drink(int id, String name, BigDecimal price, Rating rating) {
         super(id, name, price, rating);
     }
 
@@ -15,7 +17,7 @@ public class Drink extends Product {
 
     @Override
     public Product applyNewRating(Rating newRating) {
-        return new Drink(getId(), getName(), getPrice(), newRating );
+        return new Drink(getId(), getProduct_name(), getPrice(), newRating );
     }
 
     @Override

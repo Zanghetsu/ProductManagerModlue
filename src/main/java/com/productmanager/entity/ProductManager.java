@@ -1,4 +1,11 @@
-package com.productmanager.data;
+package com.productmanager.entity;
+
+import com.productmanager.entity.product.Drink;
+import com.productmanager.entity.product.Food;
+import com.productmanager.entity.product.Product;
+import com.productmanager.entity.review.Rateable;
+import com.productmanager.entity.review.Rating;
+import com.productmanager.entity.review.Review;
 
 import java.math.BigDecimal;
 import java.text.MessageFormat;
@@ -176,7 +183,7 @@ public class ProductManager {
 
         private String productFormatter(Product product) {
             return MessageFormat.format(resources.getString("product"),
-                    product.getName(),
+                    product.getProduct_name(),
                     currencyFormatter.format(product.getPrice()),
                     product.getRating().getStars(),
                     dateFormatter.format(product.getBestBefore()));
