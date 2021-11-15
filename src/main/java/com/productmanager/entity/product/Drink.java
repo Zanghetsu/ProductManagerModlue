@@ -1,11 +1,13 @@
-package com.productmanager.entity;
+package com.productmanager.entity.product;
+
+import com.productmanager.entity.review.Rating;
 
 import java.math.BigDecimal;
 import java.time.LocalTime;
 
 public class Drink extends Product {
 
-    Drink(int id, String name, BigDecimal price, Rating rating) {
+    public Drink(int id, String name, BigDecimal price, Rating rating) {
         super(id, name, price, rating);
     }
 

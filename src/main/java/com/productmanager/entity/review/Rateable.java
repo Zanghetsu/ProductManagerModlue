@@ -1,4 +1,4 @@
-package com.productmanager.entity;
+package com.productmanager.entity.review;
 
 @FunctionalInterface
 public interface Rateable <T> {

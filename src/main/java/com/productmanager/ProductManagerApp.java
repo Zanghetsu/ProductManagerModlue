@@ -1,8 +1,8 @@
 package com.productmanager;
 
-import com.productmanager.entity.Product;
 import com.productmanager.entity.ProductManager;
-import com.productmanager.entity.Rating;
+import com.productmanager.entity.product.Product;
+import com.productmanager.entity.review.Rating;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

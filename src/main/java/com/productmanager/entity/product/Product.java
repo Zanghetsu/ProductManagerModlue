@@ -1,4 +1,7 @@
-package com.productmanager.entity;
+package com.productmanager.entity.product;
+
+import com.productmanager.entity.review.Rateable;
+import com.productmanager.entity.review.Rating;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
