@@ -1,12 +1,12 @@
-package com.productmanager.app;
+package com.productmanager;
 
-import com.productmanager.data.*;
+import com.productmanager.entity.Product;
+import com.productmanager.entity.ProductManager;
+import com.productmanager.entity.Rating;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Comparator;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 /**
  * {@code ProductManagerApp} class represents a shop inventory management system
@@ -47,7 +47,7 @@ public class ProductManagerApp {
         //productManager.printProductReport(p2);
 
         productManager.printProductsReportSorted(p -> p.getPrice().floatValue() < 2 ,(p1,p2) -> p2.getRating().ordinal() - p1.getRating().ordinal());
-        Comparator<Product> ratingSorter = (p1,p2) -> p1.getRating().ordinal() - p2.getRating().ordinal();
+        Comparator<Product> ratingSorter = (p1, p2) -> p1.getRating().ordinal() - p2.getRating().ordinal();
         Comparator<Product> priceSorter = (p1,p2) -> p1.getPrice().compareTo(p2.getPrice());
         //productManager.printProductsReportSorted(ratingSorter.thenComparing(priceSorter));
         productManager.getDiscounts().forEach((rating,discount) -> System.out.println(rating +"\t"+discount));

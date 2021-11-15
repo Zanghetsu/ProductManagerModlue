@@ -1,4 +1,4 @@
-package com.productmanager.data;
+package com.productmanager.entity;
 
 import java.math.BigDecimal;
 import java.text.MessageFormat;

@@ -1,10 +1,9 @@
-package com.productmanager.data;
+package com.productmanager.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import static com.productmanager.data.Rating.*;
 import static java.math.RoundingMode.HALF_UP;
 
 /**
@@ -35,7 +34,7 @@ public abstract class Product implements Rateable<Product> {
     }
 
     public Product(int id, String name, BigDecimal price) {
-        this(id, name, price, NOT_RATED);
+        this(id, name, price, Rating.NOT_RATED);
     }
 
     public int getId() {

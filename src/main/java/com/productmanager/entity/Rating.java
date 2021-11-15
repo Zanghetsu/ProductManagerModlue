@@ -1,4 +1,4 @@
-package com.productmanager.data;
+package com.productmanager.entity;
 
 /**
  * This is a simple representation of a ratings system,

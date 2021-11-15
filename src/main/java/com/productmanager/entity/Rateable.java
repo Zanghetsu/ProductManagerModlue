@@ -1,4 +1,4 @@
-package com.productmanager.data;
+package com.productmanager.entity;
 
 @FunctionalInterface
 public interface Rateable <T> {
@@ -6,7 +6,7 @@ public interface Rateable <T> {
 
     T applyNewRating(Rating rating);
 
-    public default T applyNewRating1(int rating){
+    public default T applyNewRating(int rating){
         return applyNewRating(Rateable.convert(rating));
     }
 

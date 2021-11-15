@@ -1,4 +1,4 @@
-package com.productmanager.data;
+package com.productmanager.entity;
 
 public class ProdManException extends Exception{
     public ProdManException() {

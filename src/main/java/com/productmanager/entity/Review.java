@@ -1,4 +1,4 @@
-package com.productmanager.data;
+package com.productmanager.entity;
 
 public class Review {
     private Rating rating;
