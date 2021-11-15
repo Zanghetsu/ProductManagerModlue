@@ -183,7 +183,7 @@ public class ProductManager {
 
         private String productFormatter(Product product) {
             return MessageFormat.format(resources.getString("product"),
-                    product.getName(),
+                    product.getProduct_name(),
                     currencyFormatter.format(product.getPrice()),
                     product.getRating().getStars(),
                     dateFormatter.format(product.getBestBefore()));

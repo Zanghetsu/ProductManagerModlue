@@ -20,7 +20,7 @@ import static java.math.RoundingMode.HALF_UP;
 public abstract class Product implements Rateable<Product> {
 
     private int id;
-    private String name;
+    private String product_name;
     private BigDecimal price;
     private final BigDecimal DISCOUNT_RATE = BigDecimal.valueOf(0.1);
     private Rating rating;
@@ -29,23 +29,23 @@ public abstract class Product implements Rateable<Product> {
         return LocalDate.now();
     }
 
-    public Product(int id, String name, BigDecimal price, Rating rating) {
+    public Product(int id, String product_name, BigDecimal price, Rating rating) {
         this.id = id;
-        this.name = name;
+        this.product_name = product_name;
         this.price = price;
         this.rating = rating;
     }
 
-    public Product(int id, String name, BigDecimal price) {
-        this(id, name, price, Rating.NOT_RATED);
+    public Product(int id, String product_name, BigDecimal price) {
+        this(id, product_name, price, Rating.NOT_RATED);
     }
 
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getProduct_name() {
+        return product_name;
     }
 
     public BigDecimal getPrice() {
@@ -68,7 +68,7 @@ public abstract class Product implements Rateable<Product> {
 
     @Override
     public String toString() {
-        return id+" "+name+" "+price+" " +getDiscount()+" "+getRatingDisplay()+" "+getBestBefore() ;
+        return id+" "+ product_name +" "+price+" " +getDiscount()+" "+getRatingDisplay()+" "+getBestBefore() ;
     }
 
     @Override
@@ -77,7 +77,7 @@ public abstract class Product implements Rateable<Product> {
         if (!(o instanceof Product)) return false;
         if( o.getClass() != this.getClass()) return false;
         Product product = (Product) o;
-        return getId() == product.getId() && Objects.equals(getName(), product.getName());
+        return getId() == product.getId() && Objects.equals(getProduct_name(), product.getProduct_name());
     }
 
     @Override
